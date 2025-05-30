@@ -1,0 +1,45 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: login
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/sign-api/**
+        - id: nlp
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/gpt/**
+        - id: wish
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/wish/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: 
+              - "http://localhost:5173"
+            allowedHeaders:
+              - "*"
+            allowedMethods:
+              - GET
+              - POST
+              - OPTIONS
+              - PUT
+              - DELETE
+            allowCredentials: true
+      default-filters:
+        - name: Retry
+          args:
+            retries: 3
+            methods: GET,POST
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
