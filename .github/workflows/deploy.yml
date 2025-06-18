@@ -47,7 +47,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          docker stop gateway-app || true
-          docker rm gateway-app || true
-          docker load < /home/ubuntu/bokgi/gateway-app.tar
-          docker run -d --name gateway-app -p 8083:8083 gateway-app
+          sudo docker stop gateway-app || true
+          sudo docker rm gateway-app || true
+          sudo docker load < /home/ubuntu/bokgi/gateway-app.tar
+          sudo docker run -d --name gateway-app -p 8083:8083 gateway-app
