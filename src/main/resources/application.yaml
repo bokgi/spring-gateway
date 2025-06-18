@@ -8,15 +8,15 @@ spring:
     gateway:
       routes:
         - id: login
-          uri: http://localhost:8080
+          uri: http://login-app:8080
           predicates:
             - Path=/api/sign-api/**
         - id: nlp
-          uri: http://localhost:8081
+          uri: http://nlp-app:8081
           predicates:
             - Path=/api/gpt/**
         - id: wish
-          uri: http://localhost:8082
+          uri: http://wish-app:8082
           predicates:
             - Path=/api/wish/**
       globalcors:
