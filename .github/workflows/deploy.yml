@@ -36,7 +36,7 @@ jobs:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: gateway-app.jar
+        source: gateway-app.tar
         target: /home/ubuntu/bokgi
 
     - name: Run GatewayService on Server
